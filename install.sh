@@ -1485,6 +1485,7 @@ install_x-ui() {
 
     # Extract resources and set permissions
     echo -e "${green}Extracting EP package...${plain}"
+    rm -rf x-ui
     mkdir -p x-ui
     tar zxf x-ui-linux-$(arch).tar.gz -C x-ui
     if [[ $? -ne 0 ]]; then
