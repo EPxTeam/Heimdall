@@ -1024,6 +1024,7 @@ update_x-ui() {
     fi
 
     echo -e "${green}Installing new x-ui version...${plain}"
+    rm -rf x-ui
     mkdir -p x-ui
     tar zxvf x-ui-linux-$(arch).tar.gz -C x-ui > /dev/null 2>&1
     if [[ $? -ne 0 ]]; then
