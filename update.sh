@@ -954,7 +954,7 @@ update_x-ui() {
 
     echo -e "${green}Downloading new x-ui version...${plain}"
 
-    # XUI_UPDATE_TAG lets the panel target a specific EP release tag
+    # XUI_UPDATE_TAG lets the panel target a specific Heimdall release tag
     # such as dev-latest or a stable v* tag. Empty keeps latest stable.
     if [[ -n "${XUI_UPDATE_TAG}" ]]; then
         tag_version="${XUI_UPDATE_TAG}"
@@ -962,7 +962,7 @@ update_x-ui() {
     else
         tag_version=$(${curl_bin} -Ls "https://api.github.com/repos/EPxTeam/Heimdall/releases/latest" 2> /dev/null | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
         if [[ ! -n "$tag_version" ]]; then
-            _fail "ERROR: Failed to fetch EP version, it may be due to GitHub API restrictions, please try it later"
+            _fail "ERROR: Failed to fetch Heimdall version, it may be due to GitHub API restrictions, please try it later"
         fi
     fi
     echo -e "Got x-ui latest version: ${tag_version}, beginning the installation..."
@@ -1024,9 +1024,7 @@ update_x-ui() {
     fi
 
     echo -e "${green}Installing new x-ui version...${plain}"
-    rm -rf x-ui
-    mkdir -p x-ui
-    tar zxvf x-ui-linux-$(arch).tar.gz -C x-ui > /dev/null 2>&1
+    tar zxvf x-ui-linux-$(arch).tar.gz > /dev/null 2>&1
     if [[ $? -ne 0 ]]; then
         rm x-ui-linux-$(arch).tar.gz -f > /dev/null 2>&1
         _fail "ERROR: Failed to extract the x-ui release archive -- the previous installation has already been removed, so the panel will not start until this is fixed; try running the update again"
