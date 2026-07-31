@@ -954,7 +954,7 @@ update_x-ui() {
 
     echo -e "${green}Downloading new x-ui version...${plain}"
 
-    # XUI_UPDATE_TAG lets the panel target a specific Heimdall release tag
+    # XUI_UPDATE_TAG lets the panel target a specific EP release tag
     # such as dev-latest or a stable v* tag. Empty keeps latest stable.
     if [[ -n "${XUI_UPDATE_TAG}" ]]; then
         tag_version="${XUI_UPDATE_TAG}"
@@ -962,7 +962,7 @@ update_x-ui() {
     else
         tag_version=$(${curl_bin} -Ls "https://api.github.com/repos/EPxTeam/Heimdall/releases/latest" 2> /dev/null | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
         if [[ ! -n "$tag_version" ]]; then
-            _fail "ERROR: Failed to fetch Heimdall version, it may be due to GitHub API restrictions, please try it later"
+            _fail "ERROR: Failed to fetch EP version, it may be due to GitHub API restrictions, please try it later"
         fi
     fi
     echo -e "Got x-ui latest version: ${tag_version}, beginning the installation..."
@@ -1196,7 +1196,7 @@ update_x-ui() {
     expected_xui_version="${tag_version#v}"
     installed_xui_version="${installed_xui_version#v}"
     if [[ -z "${installed_xui_version}" || "${installed_xui_version}" != "${expected_xui_version}" ]]; then
-        _fail "ERROR: Installed HEIMDALL version verification failed. expected=${expected_xui_version}, got=${installed_xui_version:-unknown}"
+        _fail "ERROR: Installed EP version verification failed. expected=${expected_xui_version}, got=${installed_xui_version:-unknown}"
     fi
 
     echo -e "${green}x-ui ${tag_version}${plain} updating finished, it is running now..."
