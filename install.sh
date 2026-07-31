@@ -1442,7 +1442,7 @@ install_x-ui() {
         fi
 
         url="https://github.com/EPxTeam/Heimdall/releases/download/${tag_version}/x-ui-linux-$(arch).tar.gz"
-        echo -e "Beginning to install EP ${tag_version}"
+        echo -e "Beginning to install Heimdall ${tag_version}"
         curl -fLR --retry 5 --retry-delay 3 --connect-timeout 15 --max-time 300 -o ${xui_folder}-linux-$(arch).tar.gz ${url}
         if [[ $? -ne 0 ]]; then
             echo -e "${red}Download x-ui ${tag_version} failed, please check if the version exists ${plain}"
@@ -1484,10 +1484,8 @@ install_x-ui() {
     fi
 
     # Extract resources and set permissions
-    echo -e "${green}Extracting EP package...${plain}"
-    rm -rf x-ui
-    mkdir -p x-ui
-    tar zxf x-ui-linux-$(arch).tar.gz -C x-ui
+    echo -e "${green}Extracting Heimdall package...${plain}"
+    tar zxf x-ui-linux-$(arch).tar.gz
     if [[ $? -ne 0 ]]; then
         rm x-ui-linux-$(arch).tar.gz -f
         rm -f "${xui_script_temp}"
